@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  outline: none;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+:root {
+  --primary-color: rgb(0, 0, 0);
+  --secondary-color: rgb(244, 223, 200);
+  --tertiary-color: rgb(244, 234, 224);
+  --quaternary-color: rgb(250, 246, 240);
+  --link-color: rgb(25, 167, 206);
+  --link-color-hover: rgba(25, 167, 206, 0.8);
+  --error-color: rgb(237, 67, 55);
+}
+
+html,
+body {
+  background-color: var(--quaternary-color);
+}
