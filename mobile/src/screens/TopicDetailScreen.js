@@ -286,6 +286,7 @@ export default function TopicDetailScreen({ route, navigation }) {
             onPress={() => setModalVisible(false)} 
           />
           <View style={styles.modalContent}>
+            <View style={styles.modalTopLine}></View>
             <View style={styles.modalHeader}>
               <Text style={styles.modalTitle}>Bu başlığa yanıt yaz</Text>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
@@ -472,6 +473,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: Spacing.md,
+  },
+  modalTopLine: {
+    width: 50,
+    height: 4,
+    backgroundColor: Colors.border,
+    borderRadius: BorderRadius.round,
+    alignSelf: 'center',
+    marginBottom: Spacing.md,
+    marginTop: -10,
   },
   modalTitle: {
     fontSize: FontSizes.lg,

@@ -12,11 +12,13 @@ import {
   Modal,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ApiService, { ApiRoutes } from '../services/api';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 
 export default function PublicProfileScreen({ route, navigation }) {
   const { username } = route.params; // Expecting username from navigation
+  const insets = useSafeAreaInsets();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAvatarModalVisible, setAvatarModalVisible] = useState(false);
@@ -91,7 +93,7 @@ export default function PublicProfileScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: Spacing.xl + Spacing.sm + insets.top / 2 }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}

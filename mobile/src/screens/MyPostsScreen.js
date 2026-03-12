@@ -8,11 +8,13 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ApiService from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 
 export default function MyPostsScreen({ route, navigation }) {
+  const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const { posts: initialPosts = [] } = route.params || {};
   const [posts, setPosts] = useState(initialPosts);
@@ -85,7 +87,7 @@ export default function MyPostsScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: Spacing.xl + Spacing.sm + insets.top / 2 }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}

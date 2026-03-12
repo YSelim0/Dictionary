@@ -12,12 +12,14 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ApiService from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 
 export default function ChangePasswordScreen({ navigation }) {
   const { user } = useAuth();
+  const insets = useSafeAreaInsets();
   
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -65,7 +67,7 @@ export default function ChangePasswordScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: Spacing.xl + Spacing.sm + insets.top / 2 }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}

@@ -12,6 +12,7 @@ import {
   Modal,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '../context/AuthContext';
 import ApiService from '../services/api';
 import { ApiRoutes } from '../services/api';
@@ -19,6 +20,7 @@ import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 
 export default function ProfileScreen({ navigation }) {
   const { user, logout, updateUser } = useAuth();
+  const insets = useSafeAreaInsets();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAvatarModalVisible, setAvatarModalVisible] = useState(false);
@@ -71,7 +73,7 @@ export default function ProfileScreen({ navigation }) {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: Spacing.xl + insets.top / 2 }]}>
         <Text style={styles.headerTitle}>Profil</Text>
       </View>
 

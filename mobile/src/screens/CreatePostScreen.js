@@ -11,11 +11,13 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '../context/AuthContext';
 import ApiService from '../services/api';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 
 export default function CreatePostScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const [topic, setTopic] = useState('');
   const [message, setMessage] = useState('');
@@ -37,10 +39,10 @@ export default function CreatePostScreen({ navigation }) {
       if (response && response.success) {
         Alert.alert('Başarılı', 'Gönderi oluşturuldu!', [
           { 
-            text: 'Tamam', 
-            onPress: () => {
-              // Gelen cevaptan slug dönebilirdi, 
-              // ancak yinede elimizdeki başlığı slug'a çevirerek o sayfaya yönlendirelim
+          text: 'Tamam', 
+          onPress: () => {
+              // The response could return a slug,
+              // but we still generate a slug from the title we have and navigate to that page
               const slug = topic.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
               
               setTopic('');
@@ -65,7 +67,7 @@ export default function CreatePostScreen({ navigation }) {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: Spacing.xl + insets.top / 2 }]}>
         <Text style={styles.headerTitle}>Yeni Gönderi</Text>
       </View>
 

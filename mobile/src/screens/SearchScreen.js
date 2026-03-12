@@ -11,10 +11,12 @@ import {
   Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ApiService, { ApiRoutes } from '../services/api';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 
 export default function SearchScreen({ navigation }) {
+  const insets = useSafeAreaInsets();
   const [query, setQuery] = useState('');
   const [allTopics, setAllTopics] = useState([]);
   const [filteredTopics, setFilteredTopics] = useState([]);
@@ -71,7 +73,7 @@ export default function SearchScreen({ navigation }) {
           } finally {
             if (isActive) setIsSearchingUser(false);
           }
-        }, 500); // 500ms bekleme süresi (debounce)
+        }, 500); // 500ms wait time (debounce)
 
         return () => {
           isActive = false;
@@ -240,7 +242,7 @@ export default function SearchScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: Spacing.xl + insets.top / 2 }]}>
         <Text style={styles.headerTitle}>Ara</Text>
         <View style={styles.searchContainer}>
           <Ionicons name="search" size={18} color={Colors.textSecondary} style={styles.searchIcon} />

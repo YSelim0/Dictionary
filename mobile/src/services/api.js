@@ -51,7 +51,7 @@ apiClient.interceptors.response.use(
 // Usage: ApiRoutes.baseUrl + ApiRoutes.auth.login
 // ============================================================
 export const ApiRoutes = {
-  baseUrl: 'https://dictionary.yavuzsen.com/server',
+  baseUrl: 'http://localhost/dictionary/server',
 
   auth: {
     register: '/auth/register.php',
