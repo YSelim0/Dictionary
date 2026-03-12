@@ -37,11 +37,12 @@
 
         if (in_array($fileType, $allowedTypes)) {
             $uploadDir = "../storage/users/";
-            $targetFilePath = $uploadDir . $userId . ".jpg";
+            $photoId = uniqid('photo_');
+            $targetFilePath = $uploadDir . $photoId . ".jpg";
 
             if ($error === 0) {
                 if (move_uploaded_file($tmpName, $targetFilePath)) {
-                    $photoUrl = $appBaseURL . "server/storage/users/" . $userId . ".jpg";
+                    $photoUrl = $appBaseURL . "server/storage/users/" . $photoId . ".jpg";
 
                     $query = "UPDATE users SET photoUrl = :photoUrl WHERE id = :userId";
                     $statement = $db->prepare($query);

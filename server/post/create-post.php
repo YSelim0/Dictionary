@@ -59,7 +59,7 @@
         return;
     }
 
-    if (strlen($message > 250)) {
+    if (strlen($message) > 250) {
         echo json_encode([
             'success' => false,
             'message' => 'Message must be 250 characters or less.'
