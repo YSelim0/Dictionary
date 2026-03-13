@@ -38,6 +38,37 @@
             }
         }
     }
+
+    // Her topic için ilk mesaj ve gönderen kullanıcı bilgilerini ekle
+    $firstMessageQuery = "SELECT posts.message, posts.createDate, users.username, users.photoUrl
+        FROM posts
+        JOIN users ON posts.userId = users.id
+        JOIN topics ON posts.topicId = topics.id
+        WHERE topics.slug = :slug
+        ORDER BY posts.createDate ASC
+        LIMIT 1";
+
+    $firstMessageStatement = $db->prepare($firstMessageQuery);
+
+    foreach ($result as &$topic) {
+        $firstMessageStatement->bindValue(':slug', $topic['slug']);
+        $firstMessageStatement->execute();
+        $firstMessage = $firstMessageStatement->fetch(PDO::FETCH_ASSOC);
+        $firstMessageStatement->closeCursor();
+
+        if ($firstMessage) {
+            $topic['message'] = [
+                'text' => $firstMessage['message'],
+                'createDate' => $firstMessage['createDate'],
+                'user' => [
+                    'username' => $firstMessage['username'],
+                    'photoUrl' => $firstMessage['photoUrl'],
+                ],
+            ];
+        } else {
+            $topic['message'] = null;
+        }
+    }
     
     echo json_encode([
         'success' => true,
