@@ -146,7 +146,7 @@ export default function PublicProfileScreen({ route, navigation }) {
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
-                <Text style={styles.statValue}>{profile.likeCount || 0}</Text>
+                <Text style={styles.statValue}>{profile.totalLike ?? 0}</Text>
                 <Text style={styles.statLabel}>Beğeni</Text>
               </View>
             </View>

@@ -33,11 +33,19 @@
     $statement->execute();
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+    $queryTotalLike = "SELECT COUNT(*) as totalLike FROM likes l INNER JOIN posts p ON l.postId = p.id WHERE p.userId = :userId";
+    $stmtTotalLike = $db->prepare($queryTotalLike);
+    $stmtTotalLike->bindValue(':userId', $user['id']);
+    $stmtTotalLike->execute();
+    $totalLikeRow = $stmtTotalLike->fetch(PDO::FETCH_ASSOC);
+    $totalLike = (int) ($totalLikeRow['totalLike'] ?? 0);
+
     echo json_encode([
         'success' => true,
         'message' => 'User fetched successfully',
         'username' => $user['username'],
         'photoUrl' => $user['photoUrl'],
         'biography' => $user['biography'],
+        'totalLike' => $totalLike,
         'posts' => $posts
     ]);
