@@ -1,4 +1,4 @@
-![Dictionary Banner](https://i.ibb.co/KGvd8mF/dictionary-banner.png)
+![Dictionary Banner](https://raw.githubusercontent.com/YSelim0/Dictionary/main/web/src/assets/img/dictionary-banner.png)
 
 # Dictionary 📚
 
